@@ -1,0 +1,229 @@
+/*  Colors */
+@lightCharcoal: #777779;
+@lighterGrey: #FAFAFA;
+@lightGrey: #F1F2F2;
+@darkGrey: #CCCCCC;
+@grey: #E6E6E6;
+
+@charcoal: #333335;
+@orange: #D9591E;
+@black: #000000;
+@white: #ffffff;
+@green: #5aad52;
+@blue: #488FCD;
+@red: #d06268;
+
+@popoverHeaderHeight: 45px;
+@popoverCarrotHeight: 14px;
+@popoverCarrotWidth: 28px;
+
+@hoverOpacity: .5;
+
+.hoverColor (@color: @white, @strength: 10%){
+    background-color: darken(@color, @strength);
+}
+
+html{
+    font-size: 100%;
+}
+
+.borderBox {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.hover(){
+     &:hover {
+         opacity: @hoverOpacity;
+     }
+ }
+
+#popoverWrapper {
+    font-family: verdana, sans-serif;
+    position: fixed;
+    height: 100%;
+    width: 305px;
+    padding-top: @popoverCarrotHeight - 4;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    .borderBox;
+    z-index: 10;
+    //pointer-events allows click-throughs to popover. Possibly find better fix in the future.
+    pointer-events: none;
+    -webkit-transform: translateZ(0);
+}
+
+#popover {
+    position: relative;
+    .borderBox;
+    height: 100%;
+    width: 100%;
+    color: @charcoal;
+    visibility: visible !important;
+    z-index: 10;
+    -webkit-transform: translateZ(0);
+    border-top: 1px solid @darkGrey;
+
+    a {
+        color: @charcoal;
+    }
+}
+
+#popoverHeader {
+    position: absolute;
+    z-index:1;
+    .borderBox;
+    width: 100%;
+    overflow: hidden;
+    //border-bottom: 1px solid @charcoal;
+    line-height: @popoverHeaderHeight;
+    font-size: 16/18em;
+    background: @white;
+    border-bottom: 1px solid @darkGrey;
+    visibility: visible;
+    border-right: 1px solid @darkGrey;
+    border-left: 1px solid @darkGrey;
+    height: 49px;
+    pointer-events: auto;
+}
+
+#popoverArrow {
+    position: absolute;
+    float: left;
+    margin-top: -1* @popoverCarrotHeight;
+    margin-left: -1 * (@popoverCarrotWidth / 2)-2; /* Half width */
+    visibility: visible;
+    left: 50%;
+    z-index: 2;
+
+    height: @popoverCarrotHeight;
+    width: @popoverCarrotWidth;
+
+    background: url('../../popupSprite1.png') no-repeat 0px 0px;
+}
+
+.flipArrow{
+    background: url('../../popupSprite1.png') no-repeat 0px -20px !important;
+    //-webkit-transform: rotate(180deg);
+    //-moz-transform: rotate(180deg);
+    //filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+}
+
+.hover(){
+    &:hover {
+        opacity: @hoverOpacity;
+    }
+}
+
+#popoverBack, #popoverClose{
+    position: absolute;
+    cursor: pointer;
+    height: 22px;
+    width: 21px;
+    top: 14px;
+    .hover;
+}
+
+#popoverBack {
+    left: 14px;
+    background: url('../../popupSprite1.png') no-repeat -9px -116px;
+}
+
+#popoverClose {
+    right: 14px;
+    background: url('../../popupSprite1.png') no-repeat -5px -89px;
+}
+
+#popoverTitle{
+    white-space: nowrap;
+    text-align: center;
+    max-width: 225px;
+    overflow: hidden;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    .borderBox;
+}
+
+#popoverContentWrapper {
+    position: relative;
+    overflow: visible !important;
+    padding-top: 0px;
+    height: 100%;
+    width: 100%;
+    .borderBox;
+}
+
+#popoverContent {
+    visibility: visible;
+    position: relative;
+    overflow: auto;
+    min-height: 43px;
+    max-height: 100%;
+    width: 100%;
+    text-align: left;
+    font-size: 1em;
+    background: @white;
+    border-right: 1px solid @darkGrey;
+    border-left: 1px solid @darkGrey;
+    border-bottom: 1px solid @darkGrey;
+    .borderBox;
+    .last {
+        border-bottom: none;
+        padding-bottom: 13px;
+    }
+}
+
+.popoverContentRow {
+    display: block;
+    cursor: pointer;
+    padding: 12px 23px;
+    border-bottom: 1px solid @lightGrey;
+}
+
+.popoverContentRow:hover{
+    background: @grey;
+}
+
+@media only screen and (max-width:390px) {
+    #popoverWrapper {
+        //width: 90%;
+    }
+}
+
+// ========================================================================
+//                        jScrollPane Specific Css
+// ========================================================================
+#popoverContentWrapper .jspPane{
+    width: 100% !important;
+    //border-radius: 8px;
+    -webkit-box-shadow: 0 0 10px @lightCharcoal;
+    box-shadow: 0 0 10px @lightCharcoal;
+}
+
+#popoverContentWrapper .jspContainer {
+    //TODO: Find better fix.
+    //overflow: visible;
+}
+#popoverContentWrapper .jspDrag {
+    background: @lightCharcoal;
+}
+
+#popoverContentWrapper .jspCapTop {
+    display: block;
+    height: @popoverHeaderHeight+4;
+}
+#popoverContentWrapper .jspCapBottom {
+    display: block;
+    height: 2px;
+}
+
+#popoverWrapper, #popover, #popoverContentWrapper .jspContainer{
+    pointer-events: none;
+}
+
+#popoverWrapper .jspPane, #popoverWrapper .jspVerticalBar, #popoverHeader, #popoverContent{
+    pointer-events: auto;
+}
