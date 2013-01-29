@@ -1,0 +1,22 @@
+{
+    "name": "popover",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": [
+    ],
+    "author": "Jordan Kelly <jkelly@foundops.com>",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/FoundOPS/popover.git"
+    },
+    "engines": {
+        "node": ">= 0.4.x"
+    },
+    "scripts": {
+        "test": "mocha-phantomjs ./test/test.html"
+    },
+    "dependencies": {
+        "mocha-phantomjs": "2.0.0",
+        "chai": "*"
+    }
+}
