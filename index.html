@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Popover jQuery Plugin</title>
+
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link href="./vendor/bootstrap.css" rel="stylesheet">
+    <link href="./vendor/bootstrap-responsive.css" rel="stylesheet">
+    <link href="./vendor/prettify.css" type="text/css" rel="stylesheet" />
+    <link href="./vendor/jquery.jscrollpane.css" type="text/css" rel="stylesheet" />
+    <link href="./styles/main.css" rel="stylesheet" type="text/css">
+    <link href="./styles/popover.less" rel="stylesheet/less" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./Icon-96x96.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./Icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" href="./Icon-36x36.png">
+    <link rel="shortcut icon" href="./Icon-36x36.png">
+    <meta http-equiv="cleartype" content="on">
+    <link href='http://fonts.googleapis.com/css?family=Arvo:400' rel='stylesheet' type='text/css'>
+</head>
+<body onload="prettyPrint()">
+<div class="container-fluid">
+<div class="row-fluid">
+<div id="content" class="span12">
+<!-- Template Start -->
+<h2 id="components-popup">
+    Popup
+    <small>fort-popup.js</small>
+
+    <p style="float: right;"><a href="https://raw.github.com/FoundOPS/popover/master/popover.js" class="btn">Download</a></p>
+</h2>
+<div class="row-fluid">
+                    <span class="span3 columns">
+                        <p>To use the Popup, first include the required javascript and css files.</p>
+                        <p>Next, create the popup with either a jQuery plugin call,
+                            or by creating a classic javascript object:</p>
+                    </span>
+
+                    <span class="span9 columns">
+                        <h4>The jQuery plugin</h4>
+                        <p><pre class="prettyprint">
+    var menu1 = {
+        id: "menu1", title: "Hello World",
+        contents: [
+            {name: "Item 1"},
+            {name: "Item 2"},
+            {name: "Item 3"}]
+        });
+    $("#menu1").optionsPopup(menu1);</pre></p>
+
+                        <h4>Creating a javascript object</h4>
+                        <p><pre class="prettyprint">
+    var p = new OptionsPopup("#menu1");
+    p.addMenu(menu1);</pre></p>
+                    </span>
+</div>
+<p>
+    <span class="label label-info">Note:</span> The id <code>#menu1</code> is also the name linked to the first menu for
+    that button. To access the starting menus from other buttons, just set the menu item's id to the starting menu's id.
+</p>
+
+<h3>Example</h3>
+<p><a id="button1" class="btn">Show Popup!</a>
+    <a id="button2" class="btn">Show Another Popup!</a></p>
+<script>
+    $(document).ready(function(){
+        //TODO: Move out as popup-ex1.js
+        $("#button1").optionsPopover({
+            id: "button1",
+            title: "Hello World!",
+            contents: [
+                {"name": "About", url: "./index.html"},
+                {"name": "Components", url: "./components.html"},
+                {"name": "Link to second button's menu...", id: "button2"}
+            ]
+        });
+        //TODO: Fix popup so that misspelled object attr's throw errors.
+        $("#button2").optionsPopover({
+                    id:"button2",
+                    title: "Hello Again, World!",
+                    contents: [
+                        {"name": "Facebook", url: "http://www.facebook.com"},
+                        {"name": "Google", url: "http://www.google.com"},
+                        {"name": "Link to first button's menu...", id: "button1"}
+                    ]
+                }
+        );
+
+        $(document).on("popup.created", function () {
+            $("#popupContentWrapper").jScrollPane({
+                horizontalGutter: 0,
+                verticalGutter: 0,
+                'showArrows': false
+            });
+        });
+
+        $(document).on('popup.setContent popup.updatePositions popup.visible popup.resize', function (e) {
+            $("#popupContentWrapper").data('jsp').reinitialise();
+        });
+    });
+</script>
+<h4>Html</h4>
+                    <pre class="prettyprint lang-html">
+    &lt;button id="menu1"&gt;Show Popup!&lt;/button&gt;
+    &lt;button id="menu2"&gt;Show Another Popup!&lt;/button&gt;</pre>
+<h4>Javascript</h4>
+                    <pre class="prettyprint lang-js">
+    $("#menu1").optionsPopup({
+        id: "menu1",
+        title: "Hello World!",
+        contents: [
+            {"name": "Menu Item 1", url: "m1"},
+            {"name": "Menu Item 2", id: "m2"},
+            {"name": "Link to second button's menu...", id: "menu2"}
+        ]
+    });
+    $("#menu2").optionsPopup({
+        id:"menu2",
+        title: "Hello Again, World!",
+        contents: [
+                {"name": "Another Menu Item 1", url: "am1"},
+                {"name": "Another Menu Item 2", url: "am2"},
+                {"name": "Link to first button's menu...", id: "menu1"}
+            ]
+        }
+    );</pre>
+<h3>Events</h3>
+<p>The following are jQuery custom events fired at different times within the popup:</p>
+<p><table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th style="width: 150px;">Event</th>
+        <th>Description</th>
+        <th>Objects Passed</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>popup.created</td>
+        <td>This event is fired at the end of the createPopup function.</td>
+        <td class="muted">None</td>
+    </tr>
+    <tr>
+        <td>popup.resize</td>
+        <td>This event is fired when the window is resized (redundant event, will be removed in future release).</td>
+        <td class="muted">None</td>
+    </tr>
+    <tr>
+        <td>popup.setContent</td>
+        <td>This event is fired at the end of the setContent function, showing the contents have been modified.</td>
+        <td class="muted">None</td>
+    </tr>
+    <tr>
+        <td>popup.visible</td>
+        <td>This event is fired at the end of the toggleVisible function and fires when the popup is visible to the user. (Currently does not wait css transitions to complete).</td>
+        <td class="muted">None</td>
+    </tr>
+    <tr>
+        <td>popup.menuClicked</td>
+        <td>This event is fired when a menu item in the popup has been clicked.</td>
+        <td class="muted">None</td>
+    </tr>
+    </tbody>
+</table></p>
+
+<h3>Popup w/ jScrollPane Plugin</h3>
+<p>
+    The popup can be easily integrated with the jScrollPane jQuery plugin. This adds mobile functionality
+    to scrolling divs and adds more customizability to the look and feel of the popup.
+</p>
+<p>
+<h4>Javascript</h4>
+                    <pre class="prettyprint lang-js">
+    //To initialise, use the code below:
+    $(document).on("popup.created", function () {
+        $("#popupContentWrapper").jScrollPane({
+            horizontalGutter: 0,
+            verticalGutter: 0,
+            'showArrows': false
+        });
+    });
+
+    $(document).on('popup.setContent popup.visible popup.resize', function (e) {
+        $("#popupContentWrapper").data('jsp').reinitialise();
+    });</pre>
+</p>
+<!--form class="form-vertical">
+    <fieldset>
+        <legend>Create Menu</legend>
+        <div class="control-group">
+            <label class="control-label" for="input01">Title</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input01">
+                <p class="help-block">Title will appear at the top of the popup.</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="input02">ID</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input02">
+                <p class="help-block">Insert id here.</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="input03">Menu Entry</label>
+            <div class="controls">
+                <textarea class="input-xlarge" id="input03" rows="4"></textarea>
+                <p class="help-block">Write the menu block in json.</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn">Create Menu</button>
+            </div>
+        </div>
+    </fieldset>
+</form-->
+
+<!-- Template End -->
+</div>
+</div>
+</div>
+
+<script type="text/javascript" src="./vendor/less.min.js"></script>
+<script src="./vendor/jquery.jScrollPane.js"></script>
+<script src="./vendor/jquery.mousewheel.js"></script>
+<script src="./vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="./vendor/prettify.js"></script>
+<script type="text/javascript" src="./js/popover.js"></script>
+</body>
+</html>

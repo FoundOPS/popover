@@ -1,0 +1,174 @@
+body{
+    font-size: 100%;
+    margin: 0;
+    padding: 10px 4px 0 4px;
+    line-height: 22px;
+
+    font-family: "segoe UI", "verdana", sans-serif;
+    color: #333335;
+    background-color: #ffffff;
+}
+
+::selection{
+    background:#991A36;
+    color: #ffffff;
+}
+
+.hero-unit {
+    padding: 8px 15px;
+
+    margin-bottom: 30px;
+    background-color: #eeeeee;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.hero-unit h1 {
+    margin-bottom: 0;
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: inherit;
+}
+
+
+#navigation{
+    position: fixed;
+    font-size: 1.3em;
+}
+
+#content{
+    font-size: .875em;
+    padding-top: 10px;
+}
+
+#gitButtons{
+    position: fixed;
+    padding-top: 3px;
+    top: 0;
+    right: 0;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    height: 20px;
+    background: #fff;
+}
+
+#gitButtons div{
+    float:left;
+    margin-right: 10px;
+}
+
+h1{
+    font-size: 2.34em;
+    line-height: 1em;
+}
+
+#projectName{
+    display: block;
+    color: #991A36;
+    overflow: hidden;
+    /*font-family: 'Simonetta', cursive;*/
+    /*font-family: 'Carter One', cursive;*/
+}
+
+#projectName img{
+    height: 36px;
+    width: 36px;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
+#projectName span{
+    vertical-align: middle;
+}
+
+p{
+    /*font-size: .875em;*/
+}
+
+ul{
+    list-style: none;
+    margin: 0;
+}
+
+ul a{
+    line-height: 1.8em;
+}
+
+ul li ul{
+    margin-top: -5px;
+    font-size: .875em;
+    margin-left: 15px;
+}
+
+ul li ul a:before{
+    content: '- ';
+}
+
+ul li ul a{
+    font-size: .875em;
+    line-height: 1em;
+}
+
+a{
+    /*color: #488FCD;*/
+}
+
+a:hover{
+    color: #D9591E;
+    text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6{
+    letter-spacing: .1em;
+    font-weight: normal;
+    margin-bottom: 4px;
+    font-family: 'Arvo', serif;
+}
+
+h1{
+    color: #991A36;
+}
+
+h2{
+    color: #D9591E;
+}
+
+h3{
+    color: #659A41;
+}
+
+h4{
+    color: #488FCD;
+}
+
+h5{
+
+}
+
+h6{
+
+}
+
+legend{
+    color: #488FCD;
+}
+
+hr{
+    margin: 0 0 12px 0;
+}
+
+.about{
+    font-size: 1.1428571428571428571428571428571em;
+    line-height: 1.5em;
+}
+
+.btn{
+    margin-bottom: 4px;
+}
+
+table{
+    /*font-size: .875em;*/
+}
