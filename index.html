@@ -34,16 +34,16 @@
 <div class="row-fluid">
 <div id="content" class="span12">
 <!-- Template Start -->
-<h2 id="components-popup">
-    Popup
-    <small>fort-popup.js</small>
+<h2 id="components-popover">
+    Popover
+    <small>popover.js</small>
 
     <p style="float: right;"><a href="https://raw.github.com/FoundOPS/popover/master/popover.js" class="btn">Download</a></p>
 </h2>
 <div class="row-fluid">
                     <span class="span3 columns">
-                        <p>To use the Popup, first include the required javascript and css files.</p>
-                        <p>Next, create the popup with either a jQuery plugin call,
+                        <p>To use the Popover, first include the required javascript and css files.</p>
+                        <p>Next, create the popover with either a jQuery plugin call,
                             or by creating a classic javascript object:</p>
                     </span>
 
@@ -57,11 +57,11 @@
             {name: "Item 2"},
             {name: "Item 3"}]
         });
-    $("#menu1").optionsPopup(menu1);</pre></p>
+    $("#menu1").optionsPopover(menu1);</pre></p>
 
                         <h4>Creating a javascript object</h4>
                         <p><pre class="prettyprint">
-    var p = new OptionsPopup("#menu1");
+    var p = new OptionsPopover("#menu1");
     p.addMenu(menu1);</pre></p>
                     </span>
 </div>
@@ -71,11 +71,10 @@
 </p>
 
 <h3>Example</h3>
-<p><a id="button1" class="btn">Show Popup!</a>
-    <a id="button2" class="btn">Show Another Popup!</a></p>
+<p><a id="button1" class="btn">Show Popover!</a>
+    <a id="button2" class="btn">Show Another Popover!</a></p>
 <script>
     $(document).ready(function(){
-        //TODO: Move out as popup-ex1.js
         $("#button1").optionsPopover({
             id: "button1",
             title: "Hello World!",
@@ -85,7 +84,6 @@
                 {"name": "Link to second button's menu...", id: "button2"}
             ]
         });
-        //TODO: Fix popup so that misspelled object attr's throw errors.
         $("#button2").optionsPopover({
                     id:"button2",
                     title: "Hello Again, World!",
@@ -97,26 +95,26 @@
                 }
         );
 
-        $(document).on("popup.created", function () {
-            $("#popupContentWrapper").jScrollPane({
+        $(document).on("popover.created", function () {
+            $("#popoverContentWrapper").jScrollPane({
                 horizontalGutter: 0,
                 verticalGutter: 0,
                 'showArrows': false
             });
         });
 
-        $(document).on('popup.setContent popup.updatePositions popup.visible popup.resize', function (e) {
-            $("#popupContentWrapper").data('jsp').reinitialise();
+        $(document).on('popover.setContent popover.updatePositions popover.visible popover.resize', function (e) {
+            $("#popoverContentWrapper").data('jsp').reinitialise();
         });
     });
 </script>
 <h4>Html</h4>
                     <pre class="prettyprint lang-html">
-    &lt;button id="menu1"&gt;Show Popup!&lt;/button&gt;
-    &lt;button id="menu2"&gt;Show Another Popup!&lt;/button&gt;</pre>
+    &lt;button id="menu1"&gt;Show Popover!&lt;/button&gt;
+    &lt;button id="menu2"&gt;Show Another Popover!&lt;/button&gt;</pre>
 <h4>Javascript</h4>
                     <pre class="prettyprint lang-js">
-    $("#menu1").optionsPopup({
+    $("#menu1").optionsPopover({
         id: "menu1",
         title: "Hello World!",
         contents: [
@@ -125,7 +123,7 @@
             {"name": "Link to second button's menu...", id: "menu2"}
         ]
     });
-    $("#menu2").optionsPopup({
+    $("#menu2").optionsPopover({
         id:"menu2",
         title: "Hello Again, World!",
         contents: [
@@ -136,7 +134,7 @@
         }
     );</pre>
 <h3>Events</h3>
-<p>The following are jQuery custom events fired at different times within the popup:</p>
+<p>The following are jQuery custom events fired at different times within the popover:</p>
 <p><table class="table table-bordered table-striped">
     <thead>
     <tr>
@@ -147,52 +145,52 @@
     </thead>
     <tbody>
     <tr>
-        <td>popup.created</td>
-        <td>This event is fired at the end of the createPopup function.</td>
+        <td>popover.created</td>
+        <td>This event is fired at the end of the createPopover function.</td>
         <td class="muted">None</td>
     </tr>
     <tr>
-        <td>popup.resize</td>
+        <td>popover.resize</td>
         <td>This event is fired when the window is resized (redundant event, will be removed in future release).</td>
         <td class="muted">None</td>
     </tr>
     <tr>
-        <td>popup.setContent</td>
+        <td>popover.setContent</td>
         <td>This event is fired at the end of the setContent function, showing the contents have been modified.</td>
         <td class="muted">None</td>
     </tr>
     <tr>
-        <td>popup.visible</td>
-        <td>This event is fired at the end of the toggleVisible function and fires when the popup is visible to the user. (Currently does not wait css transitions to complete).</td>
+        <td>popover.visible</td>
+        <td>This event is fired at the end of the toggleVisible function and fires when the popover is visible to the user. (Currently does not wait css transitions to complete).</td>
         <td class="muted">None</td>
     </tr>
     <tr>
-        <td>popup.menuClicked</td>
-        <td>This event is fired when a menu item in the popup has been clicked.</td>
+        <td>popover.menuClicked</td>
+        <td>This event is fired when a menu item in the popover has been clicked.</td>
         <td class="muted">None</td>
     </tr>
     </tbody>
 </table></p>
 
-<h3>Popup w/ jScrollPane Plugin</h3>
+<h3>Popover w/ jScrollPane Plugin</h3>
 <p>
-    The popup can be easily integrated with the jScrollPane jQuery plugin. This adds mobile functionality
-    to scrolling divs and adds more customizability to the look and feel of the popup.
+    The popover can be easily integrated with the jScrollPane jQuery plugin. This adds mobile functionality
+    to scrolling divs and adds more customizability to the look and feel of the popover.
 </p>
 <p>
 <h4>Javascript</h4>
                     <pre class="prettyprint lang-js">
     //To initialise, use the code below:
-    $(document).on("popup.created", function () {
-        $("#popupContentWrapper").jScrollPane({
+    $(document).on("popover.created", function () {
+        $("#popoverContentWrapper").jScrollPane({
             horizontalGutter: 0,
             verticalGutter: 0,
             'showArrows': false
         });
     });
 
-    $(document).on('popup.setContent popup.visible popup.resize', function (e) {
-        $("#popupContentWrapper").data('jsp').reinitialise();
+    $(document).on('popover.setContent popover.visible popover.resize', function (e) {
+        $("#popoverContentWrapper").data('jsp').reinitialise();
     });</pre>
 </p>
 <!--form class="form-vertical">
@@ -202,7 +200,7 @@
             <label class="control-label" for="input01">Title</label>
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input01">
-                <p class="help-block">Title will appear at the top of the popup.</p>
+                <p class="help-block">Title will appear at the top of the popover.</p>
             </div>
         </div>
         <div class="control-group">
