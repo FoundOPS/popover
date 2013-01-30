@@ -2,17 +2,37 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="mocha.css" />
+    <link href="../popover.less" rel="stylesheet/less" type="text/css" />
+    <style type="text/css">
+        #button1{
+            display: inline-block;
+            margin-left: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+        }
+    </style>
 </head>
 <body>
+<div id="button1">Button1</div>
 <div id="mocha"></div>
 <script src="mocha.js"></script>
 <script src="chai.js"></script>
+<script src="less.min.js"></script>
+<script src="jquery-1.9.0.min.js"></script>
 <script>
     mocha.ui('bdd');
     mocha.reporter('html');
     expect = chai.expect;
 </script>
-<script src="test/mycode.js"></script>
+<script src="../popover.js"></script>
+<script>
+    $("#button1").popover({
+        id: "button1",
+        contents: "<p>testing</p>",
+        disableHeader: true
+    });
+</script>
 <script>
     if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
     else { mocha.run(); }
