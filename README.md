@@ -13,6 +13,8 @@ Author:         Jordan Kelly
 
 Compatible browsers: IE 9+, Chrome ?+, FF 3.6+, Android 2.3+, iOS 4+
 
+Travis Status: [![Build Status](https://travis-ci.org/kellyje/popover.png)](https://travis-ci.org/kellyje/popover.png)
+
 Github:         https://github.com/FoundOPS/popover
 Repo (https):   https://github.com/FoundOPS/html5.git
 Repo (ssh):     git@github.com:FoundOPS/html5.git
