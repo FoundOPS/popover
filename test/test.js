@@ -2,7 +2,7 @@ var buttonCount=0;
 var addButton = function(){
     var button = document.createElement("div");
     button.id = "button"+[buttonCount];
-    button.innerHTML = "button"+[buttonCount];
+    button.innerHTML = "Button "+[buttonCount];
     button.className = "button";
     button.style.border = "1px solid #ccc";
     var child = document.body.appendChild(button);
@@ -16,19 +16,15 @@ var removeButton = function(id){
 };
 
 //Page setup
-var el = document.createElement("div");
-el.id = "myDiv";
-el.innerHTML = "Hi there!";
-el.style.background = "#ccc";
-var myEl = document.getElementById('myDiv');
-
 addButton();
 var button1 = addButton();
 
 var popover = $("#"+button1.id).popover({
     id: "button1",
+    title: "Popup Demo",
     contents: "<p>testing</p>",
-    disableHeader: true
+    disableHeader: true,
+    disableBackButton: false
 });
 
 //Tests

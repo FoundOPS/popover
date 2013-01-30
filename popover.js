@@ -101,8 +101,21 @@
             }
 
             //Functionality modifiers
-            if(options.disableBackButton){
-                popover.disableBackButton();
+            //TODO: Rename disableBackButton option.
+            if(typeof(options.disableBackButton) !== "undefined"){
+                if(options.disableBackButton === true){
+                    popover.disableBackButton();
+                }else if(options.disableBackButton === false){
+                    popover.enableBackButton();
+                }
+            }
+
+            if(typeof(options.enableBackButton) !== "undefined"){
+                if(options.enableBackButton === true){
+                    popover.enableBackButton();
+                }else if(options.enableBackButton === false){
+                    popover.disableBackButton();
+                }
             }
 
             if(typeof(options.disableHeader) !== 'undefined'){
@@ -551,6 +564,10 @@ Popover.prototype.disableBackButton = function(){
     this.isBackEnabled = false;
 };
 
+Popover.prototype.enableBackButton = function(){
+    this.isBackEnabled = true;
+};
+
 Popover.prototype.previousPopover = function(){
     Popover.history.pop();
     if (Popover.history.length <= 0) {
@@ -655,7 +672,7 @@ Popover.getPopoverContentHeight = function(){
 Popover.prototype.insertHeader = function (){
     var header = "<div id='popoverHeader'>" +
                     "<div id='popoverTitle'></div>" +
-                    "<a id='popoverClose'></a>" +
+                    "<a id='popoverClose'><span id='popoverCloseIcon'>✕</span></a>" +
                  "</div>";
 
     $("#popoverContentWrapper").before(header);
@@ -663,9 +680,9 @@ Popover.prototype.insertHeader = function (){
     //Create back button
     //Don't create back button or listener if disabled.
     if(this.isBackEnabled){
-        //console.log("Creating back button.");
+        //console.log("LOG: Creating back button.");
         var thisPopover = this;
-        $("#popoverHeader").prepend("<a id='popoverBack'></a>");
+        $("#popoverHeader").prepend("<a id='popoverBack'><span id='popoverBackIcon'>◂</span></a>");
         $("#popoverBack").on("click", function () {
             thisPopover.previousPopover();
         });

@@ -1,38 +1,41 @@
-Popover.js
-=========
+# Popover.js [![Build Status](https://travis-ci.org/FoundOPS/popover.png?branch=master)](https://travis-ci.org/FoundOPS/popover.png?branch=master)
 
-> Popover.js is a cross-browser, 
-> mobile compatible popover 
-> that can be easily customized and extended.
+Popover.js is a cross-browser, mobile compatible popover that can be easily customized and extended.
 
-Info
---------
-Version:        1.0.0
-Last updated:   01-28-2013
-Author:         Jordan Kelly
+<p align="center"><img src="https://github.com/foundops/popover/blob/master/example/screenshot.png?raw=true"></p>
 
-Compatible browsers: IE 9+, Chrome ?+, FF 3.6+, Android 2.3+, iOS 4+
+See the [live demo here](http://foundops.github.com/popover/).
 
-Travis Status: [![Build Status](https://travis-ci.org/kellyje/popover.png)](https://travis-ci.org/kellyje/popover.png)
+## Documentation
 
-Github:         https://github.com/FoundOPS/popover
-Repo (https):   https://github.com/FoundOPS/html5.git
-Repo (ssh):     git@github.com:FoundOPS/html5.git
-
-Dependencies
--------------
-* [jQuery]
-
-Initialization
----------------
+### Initialization
+```javascript
+//Normal popover initialization
 $(selector).popover([methods] or [config]);
-$(selector).optionsPopover([methods] or [config]);
 
-Documentation
-------------------
-    *  Config parameters:  Example usage - $(selector).popover({..., fontColor: "#000", ...});
+//Options popover initialization
+$(selector).optionsPopover([methods] or [config]);
+```
+
+### Options
+```javascript
+    $("#exampleSelector").popover({
+        id:                 "exampleSelector",
+        title:              "Popover Demo",
+        contents:           "<p>test</p>",
+        fontColor:          "#000",
+        borderColor:        "#000",
+        backgroundColor:    "#000",
+        onCreate:           null,
+        onVisible:          null,
+        childToAppend:      null,
+        keepData:           false,
+        disableHeader:      false
+    }
+
+    Info:
     *       id              - When passed for initial menu, id must be the same as the id/class used in selector.
-    *                         eg) "#popoverButton"
+    *                         eg) "exampleSelector"
     *
     *       title           - Title to be displayed on header.
     *
@@ -65,8 +68,13 @@ Documentation
     *
     *       disableHeader   - Boolean that indicates if a header should not be used on parent listener.
     *                         eg) Truthy/Falsey values
-    *
-    *   Methods: Example usage - $(selector).popover("methodName", argument1, argument2 ...);
+```
+
+### jQuery Methods:
+```javascript
+    $("#exampleSelector").popover("methodName", argument1, argument2 ...);
+
+    Info:
     *       [Internal] - Functions needed for setup/initialization.
     *           _popoverInit        - Internal function used to setup popover.
     *                                 Arguments: options_config, popover_instance
@@ -89,6 +97,15 @@ Documentation
     *           _getPopoverClass    - Function used to return internal Popover class.
     *                                 Arguments: none
     *
+```
+
+### Triggers
+```javascript
+    $(document).on("popover.created", function () {
+        console.log("LOG: The popover has been created.");
+    });
+
+    Info:
     *   Triggers:   Currently all events are namespaced under popover.* This may change in future versions.
     *       popover.created         - Fired when popup is created and placed in DOM.
     *       popover.listenerClicked - Fired when root popup listener is clicked.
@@ -99,14 +116,31 @@ Documentation
     *       popover.resize          - Fired when popover is resized.
     *       popover.closing         - Fired before popover closes.
     *       popover.setContent      - Fired after popover's contenet is set.
+```
 
+## Info
 
+### Browser Support:
+* IE 9+
+* Chrome ?+
+* FF 3.6+
+* Android 2.3+
+* iOS 4+
 
-Licenses
-----------
-MIT or GPL
+### Dependencies
+* [jQuery]
 
-  [jQuery]: http://jquery.com  
+### Contact Us
+**Twitter:** [@_kellyje]
+**Email:** jkelly@foundops.com
+
+## License
+Licensed under the MIT License.
+
+  [jQuery]: http://jquery.com
   [@_kellyje]: http://twitter.com/_kellyje
   
-    
+
+
+
+
