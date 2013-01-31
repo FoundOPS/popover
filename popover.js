@@ -462,7 +462,7 @@ Popover.setCaretPosition = function(offset){
 
     //console.log("LOG: Popover.above: "+Popover.above);
     if(Popover.above){
-        var popoverHeight = $("#popoverContent").outerHeight() - 9;
+        var popoverHeight = $("#popoverContent").outerHeight() - 4;
         $("#popoverArrow").css("margin-top", popoverHeight+"px")
                           .addClass("flipArrow")
                           .html("▼");
