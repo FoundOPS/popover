@@ -462,12 +462,14 @@ Popover.setCaretPosition = function(offset){
 
     //console.log("LOG: Popover.above: "+Popover.above);
     if(Popover.above){
-        var popoverHeight = $("#popoverContent").outerHeight() - 2;
-        $("#popoverArrow").css("margin-top", popoverHeight+"px");
-        $("#popoverArrow").addClass("flipArrow");
+        var popoverHeight = $("#popoverContent").outerHeight() - 9;
+        $("#popoverArrow").css("margin-top", popoverHeight+"px")
+                          .addClass("flipArrow")
+                          .html("▼");
     }else{
-        $("#popoverArrow").css("margin-top", "");
-        $("#popoverArrow").removeClass("flipArrow");
+        $("#popoverArrow").css("margin-top", "")
+                          .removeClass("flipArrow")
+                          .html("▲");
     }
     Popover.caretLeftOffset = caretPos;
 };

@@ -108,4 +108,9 @@ describe("Popover Tests", function () {
             $("#button1").trigger("click");
         });
     });
+
+    //TODO: Test all triggers
+    //TODO: Test all callbacks
+    //TODO: Test order of creation
+    //TODO: After implementing destroy(), test it
 });
