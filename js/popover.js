@@ -101,8 +101,21 @@
             }
 
             //Functionality modifiers
-            if(options.disableBackButton){
-                popover.disableBackButton();
+            //TODO: Rename disableBackButton option.
+            if(typeof(options.disableBackButton) !== "undefined"){
+                if(options.disableBackButton === true){
+                    popover.disableBackButton();
+                }else if(options.disableBackButton === false){
+                    popover.enableBackButton();
+                }
+            }
+
+            if(typeof(options.enableBackButton) !== "undefined"){
+                if(options.enableBackButton === true){
+                    popover.enableBackButton();
+                }else if(options.enableBackButton === false){
+                    popover.disableBackButton();
+                }
             }
 
             if(typeof(options.disableHeader) !== 'undefined'){
@@ -449,12 +462,14 @@ Popover.setCaretPosition = function(offset){
 
     //console.log("LOG: Popover.above: "+Popover.above);
     if(Popover.above){
-        var popoverHeight = $("#popoverContent").outerHeight() - 2;
-        $("#popoverArrow").css("margin-top", popoverHeight+"px");
-        $("#popoverArrow").addClass("flipArrow");
+        var popoverHeight = $("#popoverContent").outerHeight() - 6;
+        $("#popoverArrow").css("margin-top", popoverHeight+"px")
+                          .addClass("flipArrow")
+                          .html("▼");
     }else{
-        $("#popoverArrow").css("margin-top", "");
-        $("#popoverArrow").removeClass("flipArrow");
+        $("#popoverArrow").css("margin-top", "")
+                          .removeClass("flipArrow")
+                          .html("▲");
     }
     Popover.caretLeftOffset = caretPos;
 };
@@ -466,7 +481,7 @@ Popover.prototype.createPopover = function () {
     popoverWrapperDiv.attr("id", "popoverWrapper");
 
     var s = "<div id='popover'>" +
-                "<div id='popoverArrow'></div>" +
+                "<div id='popoverArrow'>▲</div>" +
                 "<div id='currentPopoverAction' style='display: none;'></div>" +
                 "<div id='popoverContentWrapper'>" +
                     "<div id='popoverContent'></div>" +
@@ -549,6 +564,10 @@ Popover.setAction = function (id) {
 
 Popover.prototype.disableBackButton = function(){
     this.isBackEnabled = false;
+};
+
+Popover.prototype.enableBackButton = function(){
+    this.isBackEnabled = true;
 };
 
 Popover.prototype.previousPopover = function(){
@@ -655,7 +674,7 @@ Popover.getPopoverContentHeight = function(){
 Popover.prototype.insertHeader = function (){
     var header = "<div id='popoverHeader'>" +
                     "<div id='popoverTitle'></div>" +
-                    "<a id='popoverClose'></a>" +
+                    "<a id='popoverClose'><span id='popoverCloseIcon'>✕</span></a>" +
                  "</div>";
 
     $("#popoverContentWrapper").before(header);
@@ -663,9 +682,9 @@ Popover.prototype.insertHeader = function (){
     //Create back button
     //Don't create back button or listener if disabled.
     if(this.isBackEnabled){
-        //console.log("Creating back button.");
+        //console.log("LOG: Creating back button.");
         var thisPopover = this;
-        $("#popoverHeader").prepend("<a id='popoverBack'></a>");
+        $("#popoverHeader").prepend("<a id='popoverBack'><span id='popoverBackIcon'>◄</span></a>");
         $("#popoverBack").on("click", function () {
             thisPopover.previousPopover();
         });
