@@ -131,7 +131,7 @@ $(selector).optionsPopover([methods] or [config]);
 * [jQuery]
 
 ### Contact Us
-* **Twitter:** [@_kellyje]
+* **Twitter:** [@kellyje_]
 * **Email:** jkelly@foundops.com
 
 ## License
