@@ -16,12 +16,13 @@ var removeButton = function(id){
 };
 
 //Page setup
+var TITLE = "Popover Demo";
 addButton();
 var button1 = addButton();
 
 var popover = $("#"+button1.id).optionsPopover({
     id: "button1",
-    title: "Popover Demo",
+    title: TITLE,
     contents: [
         {
             name: "Github",
@@ -35,6 +36,8 @@ var popover = $("#"+button1.id).optionsPopover({
     disableHeader: true,
     disableBackButton: false
 });
+
+var Popover = $("#button1").popover("_getPopoverClass");
 
 //Tests
 describe("Popover Tests", function () {
@@ -55,11 +58,18 @@ describe("Popover Tests", function () {
         });
         it("is enabled", function () {
             popover.enableHeader();
+            console.log("isHeaderDisabled: "+popover.isHeaderDisabled);
             expect(popover.isHeaderDisabled).to.equal(false);
+            $("#button1").trigger("click");
+            $("#button1").trigger("click");
         });
-        it.skip("has a back button", function () {
-            //TODO
-            expect().to.equal();
+        it("has a back button", function () {
+            console.log("isBackEnabled: "+popover.isBackEnabled);
+            var backButton = $("#popoverBack");
+            console.log(backButton.length);
+            expect(backButton.length).to.equal(1);
+            $("#button1").trigger("click");
+            $("#button1").trigger("click");
         });
         describe.skip("back button", function () {
             it("goes to previous menu when clicked", function () {
@@ -68,9 +78,11 @@ describe("Popover Tests", function () {
             });
         });
 
-        it.skip("has a close button", function () {
-            //TODO
-            expect().to.equal();
+        it("has a close button", function () {
+            var closeButton = $("#popoverClose");
+            expect(closeButton.length).to.equal(1);
+            $("#button1").trigger("click");
+            $("#button1").trigger("click");
         });
         describe.skip("close button", function () {
             it("closes when clicked", function () {
@@ -78,14 +90,22 @@ describe("Popover Tests", function () {
                 expect().to.equal();
             });
         });
-        it.skip("has title that was passed", function () {
-            //TODO
-            expect().to.equal();
+        it("has title that was passed", function () {
+            $("#button1").trigger("click");
+            var domTitle = $("#popoverTitle").text();
+            var popoverTitle = Popover.title;
+            expect(domTitle).to.equal(TITLE);
+            expect(popoverTitle).to.equal(TITLE);
+            $("#button1").trigger("click");
         });
     });
-    describe.skip("trigger tests", function () {
-        it("triggers popover.visible on visible", function () {
-
+    describe("trigger tests", function () {
+        it("triggers popover.visible on visible", function (done) {
+            $(document).on("popover.visible", function(){
+                done();
+            });
+            $("#button1").trigger("click");
+            $("#button1").trigger("click");
         });
     });
 });
