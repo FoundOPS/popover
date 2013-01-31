@@ -93,13 +93,14 @@ html{
 #popoverArrow {
     position: absolute;
     float: left;
-    margin-top: -1* @popoverCarrotHeight + 2;
+    margin-top: -1* @popoverCarrotHeight+3;
     margin-left: -1 * (@popoverCarrotWidth / 2)-2; /* Half width */
     visibility: visible;
     left: 50%;
     z-index: 2;
+    line-height: 20px;
 
-    height: @popoverCarrotHeight - 4;
+    height: @popoverCarrotHeight;
     width: @popoverCarrotWidth;
 
     font-size: 18px;
