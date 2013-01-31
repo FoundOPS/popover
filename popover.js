@@ -494,6 +494,8 @@ Popover.prototype.createPopover = function () {
     $("body").prepend(popoverWrapperDiv);
 
     //Window resize listener to check if popover is off screen.
+
+    var popoverContentWrapperDiv = $("#popoverContentWrapper");
     $(window).on('resize', function () {
             if ($("#popover").is(":visible")) {
                 Popover.updatePositions(Popover.currentTarget);
@@ -504,6 +506,7 @@ Popover.prototype.createPopover = function () {
             }else{
                 popoverWrapperDiv.css("height", "");
             }
+            popoverContentWrapperDiv.trigger("popover.resize");
         }
     );
 
@@ -521,21 +524,6 @@ Popover.prototype.createPopover = function () {
         }
     );
 
-    var popoverContentWrapperDiv = $("#popoverContentWrapper");
-    var throttleTimeout;
-    $(window).bind('resize', function () {
-        if ($.browser.msie) {
-            if (!throttleTimeout) {
-                throttleTimeout = setTimeout(function () {
-                        popoverContentWrapperDiv.trigger("popover.resize");
-                        throttleTimeout = null;
-                    }, 50
-                );
-            }
-        } else {
-            popoverContentWrapperDiv.trigger("popover.resize");
-        }
-    });
     popoverContentWrapperDiv.trigger("popover.created");
     if(this._onCreate)this._onCreate();
 
@@ -684,7 +672,7 @@ Popover.prototype.insertHeader = function (){
     if(this.isBackEnabled){
         //console.log("LOG: Creating back button.");
         var thisPopover = this;
-        $("#popoverHeader").prepend("<a id='popoverBack'><span id='popoverBackIcon'>◄</span></a>");
+        $("#popoverHeader").prepend("<a id='popoverBack'><span id='popoverBackIcon'>&#x25C0;</span></a>");
         $("#popoverBack").on("click", function () {
             thisPopover.previousPopover();
         });
