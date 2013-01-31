@@ -479,7 +479,7 @@ Popover.prototype.createPopover = function () {
     popoverWrapperDiv.attr("id", "popoverWrapper");
 
     var s = "<div id='popover'>" +
-                "<div id='popoverArrow'></div>" +
+                "<div id='popoverArrow'>▲</div>" +
                 "<div id='currentPopoverAction' style='display: none;'></div>" +
                 "<div id='popoverContentWrapper'>" +
                     "<div id='popoverContent'></div>" +
@@ -682,7 +682,7 @@ Popover.prototype.insertHeader = function (){
     if(this.isBackEnabled){
         //console.log("LOG: Creating back button.");
         var thisPopover = this;
-        $("#popoverHeader").prepend("<a id='popoverBack'><span id='popoverBackIcon'>◂</span></a>");
+        $("#popoverHeader").prepend("<a id='popoverBack'><span id='popoverBackIcon'>◄</span></a>");
         $("#popoverBack").on("click", function () {
             thisPopover.previousPopover();
         });

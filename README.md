@@ -131,16 +131,11 @@ $(selector).optionsPopover([methods] or [config]);
 * [jQuery]
 
 ### Contact Us
-**Twitter:** [@_kellyje]
-**Email:** jkelly@foundops.com
+* **Twitter:** [@_kellyje]
+* **Email:** jkelly@foundops.com
 
 ## License
 Licensed under the MIT License.
 
   [jQuery]: http://jquery.com
-  [@_kellyje]: http://twitter.com/_kellyje
-  
-
-
-
-
+  [@kellyje_]: http://twitter.com/kellyje_

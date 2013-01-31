@@ -19,10 +19,19 @@ var removeButton = function(id){
 addButton();
 var button1 = addButton();
 
-var popover = $("#"+button1.id).popover({
+var popover = $("#"+button1.id).optionsPopover({
     id: "button1",
-    title: "Popup Demo",
-    contents: "<p>testing</p>",
+    title: "Popover Demo",
+    contents: [
+        {
+            name: "Github",
+            id: "github"
+        },
+        {
+            name: "Logout",
+            id: "logout"
+        }
+    ],
     disableHeader: true,
     disableBackButton: false
 });
