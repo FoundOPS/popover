@@ -132,7 +132,6 @@ $(selector).optionsPopover([methods] or [config]);
 
 ### Contact Us
 * **Twitter:** [@kellyje]
-* **Email:** kellyje@outlook.com
 
 ## License
 Licensed under the MIT License.
