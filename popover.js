@@ -844,9 +844,13 @@ OptionsPopover.prototype.setData = function (data) {
             popoverEvent = " popoverEvent";
         }
 
-        c += "<a" + menuUrl + menuId + " class='popoverContentRow" + popoverEvent + lastElement + "'>" +
-            contArray[i].name +
-            "</a>";
+        if(typeof(contArray[i].data) !== 'undefined') {
+            c += contArray[i].data;
+        }else{
+            c += "<a" + menuUrl + menuId + " class='popoverContentRow" + popoverEvent + lastElement + "'>" +
+                contArray[i].name +
+                "</a>";
+        }
     }
 
     Popover.setAction(data.id);
